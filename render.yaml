@@ -1,0 +1,21 @@
+# Blueprint Render : déploie SKILLUP CAMPUS avec un disque persistant pour la base SQLite.
+# Le disque persistant nécessite un plan payant (starter) sur Render.
+services:
+  - type: web
+    name: skillup-campus
+    runtime: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn -w 2 -b 0.0.0.0:$PORT app:app
+    healthCheckPath: /healthz
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.13.0
+      - key: SECRET_KEY
+        generateValue: true
+      - key: SKILLUP_DB
+        value: /var/data/skillup.db
+    disk:
+      name: skillup-data
+      mountPath: /var/data
+      sizeGB: 1

@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+*.db
+.env
+src/
+.secret_key
+backups/

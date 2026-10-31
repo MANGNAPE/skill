@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#102b4e">
+  <title>SKILLUP CAMPUS — Développez vos compétences</title>
+  <style>
+    :root{
+      --navy:#102b4e;--navy2:#173d68;--green:#18a875;--green2:#e8f7f1;
+      --ink:#1d2939;--muted:#667085;--line:#e6eaf0;--bg:#f5f7fa;--white:#fff;
+      --shadow:0 12px 35px rgba(16,43,78,.08);--radius:18px
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}
+    button,input,select{font:inherit}
+    button,a{cursor:pointer}
+    a{text-decoration:none;color:inherit}
+    .topbar{height:76px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;position:sticky;top:0;z-index:20}
+    .nav{width:min(1180px,92%);margin:auto;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:850;color:var(--navy);font-size:1.18rem;letter-spacing:-.4px}
+    .logo{width:39px;height:39px;border-radius:12px;background:var(--navy);display:grid;place-items:center;color:white;font-weight:900;position:relative}
+    .logo:after{content:"";position:absolute;width:9px;height:9px;background:#38d39f;border:2px solid white;border-radius:50%;right:-2px;bottom:-2px}
+    .navlinks{display:flex;align-items:center;gap:25px;color:#475467;font-size:.93rem}
+    .navlinks a:hover{color:var(--green)}
+    .navactions{display:flex;gap:10px;align-items:center}
+    .btn{border:0;border-radius:10px;padding:11px 17px;font-weight:700;transition:.2s;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{background:var(--green);color:#fff;box-shadow:0 6px 15px #18a8752b}
+    .btn-primary:hover{background:#128d63}
+    .btn-outline{background:#fff;border:1px solid #d7dee8;color:var(--navy)}
+    .btn-dark{background:var(--navy);color:#fff}
+    .menu-toggle{display:none;background:none;border:0;font-size:1.5rem;color:var(--navy)}
+    .hero{background:linear-gradient(120deg,#102b4e 0%,#173d68 65%,#126b59 130%);color:#fff;overflow:hidden}
+    .hero-inner{width:min(1180px,92%);margin:auto;min-height:500px;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:45px;padding:68px 0}
+    .eyebrow{display:inline-flex;gap:8px;align-items:center;color:#9be8c9;background:#ffffff13;border:1px solid #ffffff28;border-radius:30px;padding:7px 13px;font-size:.82rem;font-weight:700}
+    h1{font-size:clamp(2.4rem,5vw,4.25rem);line-height:1.08;letter-spacing:-2px;margin:22px 0 18px;max-width:700px}
+    .hero p{font-size:1.08rem;color:#d9e5f1;max-width:590px;margin:0 0 28px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+    .hero .btn-outline{background:#ffffff12;border-color:#ffffff55;color:white}
+    .hero-note{font-size:.83rem!important;color:#b9cadd!important;margin-top:18px!important}
+    .hero-visual{position:relative;min-height:350px;display:grid;place-items:center}
+    .orbit{width:min(370px,90%);aspect-ratio:1;border:1px solid #ffffff35;border-radius:50%;display:grid;place-items:center;position:relative;background:radial-gradient(circle,#ffffff14,transparent 65%)}
+    .orbit:before,.orbit:after{content:"";position:absolute;border:1px dashed #ffffff3c;border-radius:50%}
+    .orbit:before{inset:35px}.orbit:after{inset:75px}
+    .orbit-core{z-index:2;width:145px;height:145px;border-radius:34px;background:#fff;color:var(--navy);display:grid;place-items:center;text-align:center;box-shadow:0 25px 60px #071a3080;font-weight:850;font-size:1.05rem}
+    .orbit-core span{font-size:2rem;color:var(--green)}
+    .float-card{position:absolute;z-index:3;background:#fff;color:var(--ink);padding:13px 16px;border-radius:14px;box-shadow:var(--shadow);font-size:.84rem;font-weight:750}
+    .float-card small{display:block;color:var(--muted);font-weight:500}
+    .fc1{top:35px;right:0}.fc2{bottom:45px;left:-5px}.fc3{bottom:10px;right:10px}
+    section{padding:76px 0}
+    .container{width:min(1180px,92%);margin:auto}
+    .section-head{text-align:center;max-width:680px;margin:0 auto 38px}
+    .kicker{color:var(--green);font-weight:800;text-transform:uppercase;letter-spacing:1.3px;font-size:.76rem}
+    h2{font-size:clamp(1.8rem,3vw,2.55rem);color:var(--navy);line-height:1.2;margin:10px 0}
+    .section-head p{color:var(--muted);margin:0}
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:25px;box-shadow:0 4px 18px #102b4e08}
+    .feature-icon{width:48px;height:48px;border-radius:14px;background:var(--green2);color:var(--green);display:grid;place-items:center;font-size:1.35rem;margin-bottom:16px}
+    .card h3{color:var(--navy);margin:0 0 8px;font-size:1.08rem}
+    .card p{color:var(--muted);margin:0;font-size:.94rem}
+    .domains{background:#fff}
+    .domain-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .domain{padding:20px;border:1px solid var(--line);border-radius:15px;background:#fff}
+    .domain b{display:block;color:var(--navy);margin:8px 0 3px}
+    .domain span{font-size:1.5rem}
+    .domain small{color:var(--muted)}
+    .demo{background:#f0f4f8}
+    .dashboard{display:grid;grid-template-columns:230px 1fr;gap:18px;background:#fff;border:1px solid var(--line);border-radius:22px;padding:16px;box-shadow:var(--shadow)}
+    .side{background:var(--navy);border-radius:16px;padding:22px 15px;color:#fff}
+    .side .brand{color:#fff;margin:0 0 28px 8px}
+    .side-menu{display:grid;gap:7px}
+    .side-menu button{border:0;background:transparent;color:#c6d4e3;text-align:left;padding:11px;border-radius:9px}
+    .side-menu button.active,.side-menu button:hover{background:#ffffff18;color:#fff}
+    .dash-main{padding:13px}
+    .dash-top{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:20px}
+    .dash-top h3{margin:0;color:var(--navy);font-size:1.35rem}
+    .dash-top p{margin:3px 0 0;color:var(--muted);font-size:.85rem}
+    .avatar{width:40px;height:40px;border-radius:50%;background:#e2f4ed;color:#13875f;display:grid;place-items:center;font-weight:800}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .stat{border:1px solid var(--line);border-radius:13px;padding:15px}
+    .stat small{color:var(--muted)}.stat strong{display:block;color:var(--navy);font-size:1.65rem;margin-top:4px}
+    .dash-lower{display:grid;grid-template-columns:1.1fr .9fr;gap:14px;margin-top:14px}
+    .panel{border:1px solid var(--line);border-radius:13px;padding:17px}
+    .panel h4{margin:0 0 15px;color:var(--navy)}
+    .skill-row{display:flex;justify-content:space-between;font-size:.86rem;margin:12px 0 5px}
+    .bar{height:8px;background:#edf1f5;border-radius:10px;overflow:hidden}.bar i{display:block;height:100%;background:var(--green);border-radius:10px}
+    .course-mini{display:flex;gap:11px;align-items:center;margin:12px 0}
+    .course-icon{width:38px;height:38px;display:grid;place-items:center;border-radius:10px;background:#eef3fa}
+    .course-mini b{display:block;font-size:.87rem;color:var(--navy)}.course-mini small{color:var(--muted)}
+    .cta{background:var(--navy);color:#fff;border-radius:22px;padding:42px;display:flex;align-items:center;justify-content:space-between;gap:25px}
+    .cta h2{color:#fff;margin:0 0 8px}.cta p{color:#cfdae6;margin:0}
+    footer{background:#0b2039;color:#b8c7d8;padding:35px 0}
+    .footer-inner{width:min(1180px,92%);margin:auto;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:.88rem}
+    .footer-inner strong{color:#fff}
+    .modal-backdrop{position:fixed;inset:0;background:#071a30a8;z-index:50;display:none;place-items:center;padding:18px}
+    .modal-backdrop.show{display:grid}
+    .modal{width:min(440px,100%);background:#fff;border-radius:20px;padding:27px;box-shadow:0 25px 80px #071a3060;position:relative}
+    .modal h3{margin:0 0 5px;color:var(--navy);font-size:1.5rem}.modal>p{color:var(--muted);margin:0 0 20px;font-size:.9rem}
+    .close{position:absolute;right:17px;top:13px;border:0;background:none;font-size:1.5rem;color:var(--muted)}
+    .field{margin:13px 0}.field label{display:block;font-weight:700;color:#344054;font-size:.86rem;margin-bottom:6px}
+    .field input,.field select{width:100%;padding:12px;border:1px solid #d8dee8;border-radius:10px;outline:none;background:#fff}
+    .field input:focus,.field select:focus{border-color:var(--green);box-shadow:0 0 0 3px #18a87518}
+    .modal .btn{width:100%;margin-top:8px}
+    .notice{font-size:.78rem;color:var(--muted);margin-top:12px;text-align:center}
+    .toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);background:#102b4e;color:white;padding:12px 18px;border-radius:10px;opacity:0;pointer-events:none;transition:.25s;z-index:70;box-shadow:var(--shadow)}
+    .toast.show{opacity:1;transform:translate(-50%,0)}
+    @media(max-width:850px){
+      .navlinks{display:none;position:absolute;top:76px;left:0;right:0;background:#fff;padding:18px 5%;border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start}
+      .navlinks.open{display:flex}.menu-toggle{display:block}.navactions .btn-outline{display:none}
+      .hero-inner{grid-template-columns:1fr;padding:55px 0 35px}.hero-visual{min-height:300px}
+      .features{grid-template-columns:repeat(2,1fr)}.domain-grid{grid-template-columns:repeat(2,1fr)}
+      .dashboard{grid-template-columns:1fr}.side{display:none}.dash-lower{grid-template-columns:1fr}
+    }
+    @media(max-width:560px){
+      .topbar{height:68px}.navlinks{top:68px}.brand{font-size:1rem}.logo{width:35px;height:35px}
+      .navactions .btn-primary{padding:9px 11px;font-size:.82rem}
+      h1{letter-spacing:-1.2px}.hero-inner{gap:15px}.hero-visual{min-height:260px}
+      .orbit{width:260px}.orbit-core{width:115px;height:115px;font-size:.9rem}.fc1{right:-4px;top:10px}.fc2{left:-4px;bottom:25px}.fc3{right:0;bottom:0}
+      section{padding:55px 0}.features{grid-template-columns:1fr}.domain-grid{grid-template-columns:1fr 1fr}
+      .dashboard{padding:8px}.dash-main{padding:8px}.stats{grid-template-columns:1fr 1fr}.stat:last-child{grid-column:span 2}
+      .cta{padding:28px;align-items:flex-start;flex-direction:column}.cta .btn{width:100%}
+    }
+    .skill-row{cursor:default}
+    .skill-slider{width:100%;accent-color:var(--green);margin:2px 0 14px}
+    .muted-note{color:var(--muted);font-size:.88rem}
+    .btn-dark:hover{background:#0b2039}
+  </style>
+</head>
+<body>
+<header class="topbar">
+  <nav class="nav">
+    <a class="brand" href="#accueil"><span class="logo">S</span> SKILLUP CAMPUS</a>
+    <div class="navlinks" id="navlinks">
+      <a href="#accueil">Accueil</a><a href="#avantages">Avantages</a><a href="#domaines">Compétences</a><a href="#apercu">Aperçu</a>
+    </div>
+    <div class="navactions">
+      <button class="btn btn-outline" id="btnLogin" data-open="login">Se connecter</button>
+      <button class="btn btn-primary" id="btnRegister" data-open="register">Créer un compte</button>
+      <button class="btn btn-dark" id="btnLogout" style="display:none">Se déconnecter</button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu">☰</button>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" id="accueil">
+    <div class="hero-inner">
+      <div>
+        <span class="eyebrow">✦ La plateforme des compétences étudiantes</span>
+        <h1>Votre diplôme ouvre la porte. <span style="color:#6ee7b7">Vos compétences</span> font la différence.</h1>
+        <p>Identifiez vos forces, développez des compétences pratiques et construisez un portfolio professionnel pour mieux préparer votre avenir.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" data-open="register">Créer mon compte <span>→</span></button>
+          <a class="btn btn-outline" href="#avantages">Découvrir la plateforme</a>
+        </div>
+        <p class="hero-note">Une initiative indépendante en phase pilote — conçue pour les étudiants du Bénin.</p>
+      </div>
+      <div class="hero-visual" aria-label="Illustration de progression des compétences">
+        <div class="orbit">
+          <div class="orbit-core"><div><span>✦</span><br>SKILLUP<br>CAMPUS</div></div>
+          <div class="float-card fc1">📊 Compétences<small>Évaluez votre niveau</small></div>
+          <div class="float-card fc2">🎯 Objectifs<small>Progressez à votre rythme</small></div>
+          <div class="float-card fc3">✓ Portfolio<small>Valorisez vos acquis</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="avantages">
+    <div class="container">
+      <div class="section-head"><span class="kicker">Pourquoi SkillUp Campus ?</span><h2>Transformez vos connaissances en compétences concrètes</h2><p>Un espace unique pour mieux connaître votre profil, apprendre par la pratique et rendre vos acquis visibles.</p></div>
+      <div class="features">
+        <article class="card"><div class="feature-icon">🔎</div><h3>Diagnostic personnalisé</h3><p>Faites le point sur vos compétences numériques, professionnelles et techniques.</p></article>
+        <article class="card"><div class="feature-icon">🧭</div><h3>Orientation ciblée</h3><p>Recevez des recommandations de formations adaptées à votre niveau et à vos objectifs.</p></article>
+        <article class="card"><div class="feature-icon">📚</div><h3>Apprentissage pratique</h3><p>Accédez à des ressources, des exercices et des évaluations pour progresser.</p></article>
+        <article class="card"><div class="feature-icon">📈</div><h3>Suivi de progression</h3><p>Visualisez vos progrès et identifiez les compétences à renforcer.</p></article>
+        <article class="card"><div class="feature-icon">🗂️</div><h3>Portfolio numérique</h3><p>Rassemblez vos formations, projets pratiques et compétences validées.</p></article>
+        <article class="card"><div class="feature-icon">🤝</div><h3>Préparation professionnelle</h3><p>Présentez plus clairement vos acquis aux entreprises, ONG et projets.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="domains" id="domaines">
+    <div class="container">
+      <div class="section-head"><span class="kicker">Domaines de compétences</span><h2>Des compétences utiles dans plusieurs secteurs</h2><p>Développez progressivement les savoir-faire recherchés dans le monde professionnel.</p></div>
+      <div class="domain-grid">
+        <div class="domain"><span>💻</span><b>Compétences numériques</b><small>Excel, Word, PowerPoint, Power BI, programmation…</small></div>
+        <div class="domain"><span>🗣️</span><b>Compétences professionnelles</b><small>Communication, leadership, travail en équipe…</small></div>
+        <div class="domain"><span>🌱</span><b>Compétences techniques</b><small>Gestion de projet agricole, suivi-évaluation…</small></div>
+        <div class="domain"><span>📊</span><b>Données et recherche</b><small>Collecte, traitement et analyse de données…</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="demo" id="apercu">
+    <div class="container">
+      <div class="section-head"><span class="kicker">Votre espace étudiant</span><h2>Un tableau de bord pour garder le cap</h2><p>Retrouvez vos indicateurs essentiels et les prochaines étapes de votre parcours.</p></div>
+      <div class="dashboard">
+        <aside class="side">
+          <div class="brand"><span class="logo">S</span> SKILLUP</div>
+          <div class="side-menu">
+            <button class="active">▦ &nbsp; Tableau de bord</button><button>◉ &nbsp; Mon diagnostic</button><button>▤ &nbsp; Formations</button><button>▣ &nbsp; Mon portfolio</button><button>⚙ &nbsp; Paramètres</button>
+          </div>
+        </aside>
+        <div class="dash-main">
+          <div class="dash-top"><div><h3 id="greet">Bonjour, étudiant 👋</h3><p id="greetSub">Voici un aperçu de votre parcours de développement.</p></div><div class="avatar" id="avatar">ET</div></div>
+          <div class="stats">
+            <div class="stat"><small>Compétences évaluées</small><strong id="statSkills">08</strong></div>
+            <div class="stat"><small>Compétences à renforcer</small><strong id="statWeak">03</strong></div>
+            <div class="stat"><small>Progression globale</small><strong id="statProgress">64%</strong></div>
+          </div>
+          <div class="dash-lower">
+            <div class="panel"><h4>Mes compétences</h4>
+              <div id="skillsList">
+              <div class="skill-row"><span>Microsoft Excel</span><b>75%</b></div><div class="bar"><i style="width:75%"></i></div>
+              <div class="skill-row"><span>Communication professionnelle</span><b>60%</b></div><div class="bar"><i style="width:60%"></i></div>
+              <div class="skill-row"><span>Suivi-évaluation</span><b>35%</b></div><div class="bar"><i style="width:35%"></i></div>
+              </div>
+            </div>
+            <div class="panel"><h4>Formations recommandées</h4>
+              <div class="course-mini"><div class="course-icon">📊</div><div><b>Excel intermédiaire</b><small>Compétence numérique · Débutant +</small></div></div>
+              <div class="course-mini"><div class="course-icon">📈</div><div><b>Initiation à Power BI</b><small>Analyse de données · Débutant</small></div></div>
+              <div class="course-mini"><div class="course-icon">📝</div><div><b>Suivi-évaluation</b><small>Gestion de projet · Intermédiaire</small></div></div>
+            </div>
+          </div>
+          <p id="demoNote" style="font-size:.75rem;color:#98a2b3;margin:13px 0 0">Aperçu illustratif — connectez-vous pour voir et mettre à jour vos propres données.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="cta"><div><h2>Prêt à développer votre potentiel ?</h2><p>Commencez par créer votre profil et faire le point sur vos compétences.</p></div><button class="btn btn-primary" data-open="register">Rejoindre SKILLUP CAMPUS →</button></div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="footer-inner"><div><strong>SKILLUP CAMPUS</strong><br>Le diplôme vous forme, les compétences vous distinguent.</div><div>Projet indépendant en phase pilote · Bénin</div><div>© <span id="year"></span> SKILLUP CAMPUS</div></div></footer>
+
+<div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <button class="close" id="closeModal" aria-label="Fermer">×</button>
+    <h3 id="modalTitle">Créer mon compte</h3><p id="modalSubtitle">Rejoignez la communauté SKILLUP CAMPUS.</p>
+    <form id="authForm">
+      <div id="registerFields">
+        <div class="field"><label for="fullname">Nom et prénom</label><input id="fullname" name="fullname" placeholder="Ex. : Amina S." required></div>
+        <div class="field"><label for="university">Université</label><select id="university" name="university"><option value="">Sélectionner</option><option>Université de Parakou</option><option>Université d'Abomey-Calavi</option><option>Université Nationale d'Agriculture</option><option>Autre établissement</option></select></div>
+        <div class="field"><label for="faculty">Faculté / filière</label><input id="faculty" name="faculty" placeholder="Ex. : Faculté d'Agronomie"></div>
+      </div>
+      <div class="field"><label for="email">Adresse e-mail</label><input id="email" name="email" type="email" placeholder="nom@exemple.com" required></div>
+      <div class="field"><label for="password">Mot de passe</label><input id="password" name="password" type="password" minlength="6" placeholder="6 caractères minimum" required></div>
+      <div class="notice" id="formError" style="display:none;color:#b42318;font-weight:600;text-align:left"></div>
+      <button class="btn btn-primary" type="submit" id="submitAuth">Créer mon compte</button>
+      <div class="notice" id="switchText">Vous avez déjà un compte ? <a href="#" id="switchMode" style="color:var(--green);font-weight:800">Se connecter</a></div>
+      <div class="notice">Vos données sont enregistrées de façon sécurisée (mot de passe chiffré).</div>
+    </form>
+  </div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+  const $ = id => document.getElementById(id);
+  const backdrop = $('modalBackdrop');
+  const form = $('authForm');
+  const registerFields = $('registerFields');
+  const title = $('modalTitle');
+  const subtitle = $('modalSubtitle');
+  const submit = $('submitAuth');
+  const switchText = $('switchText');
+  const formError = $('formError');
+  let mode = 'register';
+
+  function setMode(next) {
+    mode = next;
+    const registering = mode === 'register';
+    title.textContent = registering ? 'Créer mon compte' : 'Se connecter';
+    subtitle.textContent = registering ? 'Rejoignez la communauté SKILLUP CAMPUS.' : 'Accédez à votre espace étudiant.';
+    submit.textContent = registering ? 'Créer mon compte' : 'Se connecter';
+    registerFields.style.display = registering ? 'block' : 'none';
+    $('fullname').required = registering;
+    formError.style.display = 'none';
+    switchText.innerHTML = registering
+      ? 'Vous avez déjà un compte ? <a href="#" id="switchMode" style="color:var(--green);font-weight:800">Se connecter</a>'
+      : 'Vous n’avez pas encore de compte ? <a href="#" id="switchMode" style="color:var(--green);font-weight:800">Créer un compte</a>';
+    $('switchMode').addEventListener('click', e => { e.preventDefault(); setMode(registering ? 'login' : 'register'); });
+  }
+  function openModal(next) { setMode(next); backdrop.classList.add('show'); document.body.style.overflow = 'hidden'; }
+  function closeModal() { backdrop.classList.remove('show'); document.body.style.overflow = ''; }
+  document.querySelectorAll('[data-open]').forEach(btn => btn.addEventListener('click', () => openModal(btn.dataset.open)));
+  $('closeModal').addEventListener('click', closeModal);
+  backdrop.addEventListener('click', e => { if (e.target === backdrop) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  function toast(message) {
+    const el = $('toast');
+    el.textContent = message; el.classList.add('show');
+    clearTimeout(toast._t);
+    toast._t = setTimeout(() => el.classList.remove('show'), 3300);
+  }
+
+  async function api(url, options = {}) {
+    const res = await fetch(url, {
+      credentials: 'same-origin',
+      headers: { 'Content-Type': 'application/json' },
+      ...options
+    });
+    let data = {};
+    try { data = await res.json(); } catch (e) { /* réponse vide */ }
+    if (!res.ok) throw new Error(data.error || 'Une erreur est survenue. Réessayez.');
+    return data;
+  }
+
+  // ----- Inscription / connexion -----
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+    const fd = new FormData(form);
+    const registering = mode === 'register';
+    const body = registering
+      ? { fullname: fd.get('fullname'), university: fd.get('university'), faculty: fd.get('faculty'),
+          email: fd.get('email'), password: fd.get('password') }
+      : { email: fd.get('email'), password: fd.get('password') };
+    submit.disabled = true;
+    formError.style.display = 'none';
+    try {
+      const user = await api(registering ? '/api/register' : '/api/login', { method: 'POST', body: JSON.stringify(body) });
+      form.reset();
+      closeModal();
+      renderUser(user);
+      toast(registering ? `Bienvenue, ${user.fullName} !` : `Ravi de vous revoir, ${user.fullName} !`);
+      $('apercu').scrollIntoView();
+    } catch (err) {
+      formError.textContent = err.message;
+      formError.style.display = 'block';
+    } finally {
+      submit.disabled = false;
+    }
+  });
+
+  $('btnLogout').addEventListener('click', async () => {
+    try { await api('/api/logout', { method: 'POST' }); } catch (e) { /* ignore */ }
+    location.href = '/';
+  });
+
+  // ----- Espace étudiant -----
+  function el(tag, cls, text) {
+    const n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text !== undefined) n.textContent = text;
+    return n;
+  }
+
+  function renderSkills(user) {
+    const list = $('skillsList');
+    list.textContent = '';
+    if (!user.skills.length) {
+      list.appendChild(el('p', 'muted-note', 'Aucune compétence pour le moment.'));
+      return;
+    }
+    user.skills.forEach(skill => {
+      const head = el('div', 'skill-row');
+      const label = el('span', '', skill.name);
+      const value = el('b', '', skill.level + '%');
+      head.append(label, value);
+      const slider = el('input', 'skill-slider');
+      slider.type = 'range';
+      slider.min = 0; slider.max = 100; slider.step = 5;
+      slider.value = skill.level;
+      slider.setAttribute('aria-label', 'Niveau de ' + skill.name);
+      slider.addEventListener('input', () => { value.textContent = slider.value + '%'; });
+      slider.addEventListener('change', async () => {
+        try {
+          const updated = await api('/api/skills/' + skill.id, { method: 'PUT', body: JSON.stringify({ level: slider.value }) });
+          renderUser(updated);
+          toast('Niveau mis à jour.');
+        } catch (err) { toast(err.message); }
+      });
+      list.append(head, slider);
+    });
+  }
+
+  function renderUser(user) {
+    const logged = !!user;
+    $('btnLogin').style.display = logged ? 'none' : '';
+    $('btnRegister').style.display = logged ? 'none' : '';
+    $('btnLogout').style.display = logged ? '' : 'none';
+    if (!logged) return;
+
+    const first = user.fullName.split(' ')[0];
+    const initials = user.fullName.split(' ').filter(Boolean).slice(0, 2).map(w => w[0].toUpperCase()).join('');
+    $('greet').textContent = `Bonjour, ${first} 👋`;
+    $('greetSub').textContent = [user.university, user.faculty].filter(Boolean).join(' · ') || 'Complétez votre profil pour personnaliser votre parcours.';
+    $('avatar').textContent = initials;
+    $('statSkills').textContent = String(user.skills.length).padStart(2, '0');
+    $('statWeak').textContent = String(user.skills.filter(s => s.level < 50).length).padStart(2, '0');
+    $('statProgress').textContent = user.progress + '%';
+    $('demoNote').textContent = 'Données de votre compte. Faites glisser les curseurs pour mettre à jour votre niveau.';
+    renderSkills(user);
+  }
+
+  // ----- Menu mobile, année -----
+  $('menuToggle').addEventListener('click', () => $('navlinks').classList.toggle('open'));
+  document.querySelectorAll('#navlinks a').forEach(a => a.addEventListener('click', () => $('navlinks').classList.remove('open')));
+  $('year').textContent = new Date().getFullYear();
+
+  // ----- Session existante ? -----
+  api('/api/me').then(d => renderUser(d.user)).catch(() => renderUser(null));
+</script>
+</body>
+</html>
